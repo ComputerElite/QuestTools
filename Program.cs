@@ -1,4 +1,5 @@
-﻿using ComputerUtils.Logging;
+﻿using ComputerUtils.CommandLine;
+using ComputerUtils.Logging;
 
 namespace QuestTools
 {
@@ -10,6 +11,7 @@ namespace QuestTools
             Logger.displayLogInConsole = true;
             Logger.SetLogFile("Log.log");
             Logger.Log("Starting QuestTools version " + Menu.updater.version);
+            PublicStaticVars.arguments = new CommandLineCommandContainer(args);
             Menu.StartMenu();
         }
     }

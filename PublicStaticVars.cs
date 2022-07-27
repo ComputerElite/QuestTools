@@ -1,4 +1,5 @@
 ﻿using ComputerUtils.ADB;
+using ComputerUtils.CommandLine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace QuestTools
         public static string dexToolsLocation { get { return AppDomain.CurrentDomain.BaseDirectory + "dexTools" + Path.DirectorySeparatorChar; } }
         public static string il2CppDumperLocation { get { return AppDomain.CurrentDomain.BaseDirectory + "il2CppDumper" + Path.DirectorySeparatorChar; } }
         public static string jdCliLocation { get { return AppDomain.CurrentDomain.BaseDirectory + "jdCli" + Path.DirectorySeparatorChar; } }
-        public static string tmpFolder { get { return AppDomain.CurrentDomain.BaseDirectory + "tmp" + Path.DirectorySeparatorChar; } }
+        public static string tmpFolder { get { return settings.resultDirectory + "tmp" + Path.DirectorySeparatorChar; } }
+        public static CommandLineCommandContainer arguments = null;
     }
 }

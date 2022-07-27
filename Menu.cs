@@ -12,10 +12,15 @@ namespace QuestTools
 {
     public class Menu
     {
-        public static Updater updater = new Updater("0.0.2", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
+        public static Updater updater = new Updater("0.0.3", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
 
         public static void StartMenu()
         {
+            if(PublicStaticVars.arguments.HasArgument("--update"))
+            {
+                updater.Update();
+                return;
+            }
             updater.UpdateAssistant();
             Settings.LoadSettings();
             Dependencies.DownloadAndValidateDependencies();
