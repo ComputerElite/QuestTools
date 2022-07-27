@@ -11,9 +11,13 @@ namespace QuestTools
 {
     public class UnityDecompiler
     {
-        public static void SelectAndDecompileUnityAPK()
+        public static void SelectAndDecompileUnityAPK(bool pullFromQuest = true)
         {
-            string apk = ConsoleUiController.QuestionString("APK: ").Replace("\"", "");
+            string apk = PublicStaticVars.settings.resultDirectory + "app.apk";
+
+            if(pullFromQuest) ADBHelpers.PullAPKFromQuest(PublicStaticVars.settings.resultDirectory + "app.apk");
+            else apk = ConsoleUiController.QuestionString("APK path: ").Replace("\"", "");
+            
             ZipArchive a = ZipFile.OpenRead(apk);
             a.GetEntry("lib/arm64-v8a/libil2cpp.so").ExtractToFile(PublicStaticVars.tmpFolder + "libill2cpp.so", true);
             a.GetEntry("assets/bin/Data/Managed/Metadata/global-metadata.dat").ExtractToFile(PublicStaticVars.tmpFolder + "global-metadata.dat", true);

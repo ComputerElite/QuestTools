@@ -15,21 +15,32 @@ namespace QuestTools
     public class HorizonDecompiler
     {
         public static List<string> jars = new List<string>();
-        public static void DecompileAPK()
+        public static void DecompileAPK(bool pullFromQuest = true)
         {
-            PullAndExtractAPK();
+            if (pullFromQuest) PullAndExtractAPK();
+            else CopyAndExtractAPK();
             ExtractDex();
             Decompile();
         }
 
+        public static void CopyAndExtractAPK()
+        {
+            string apkL = ConsoleUiController.QuestionString("APK path: ").Replace("\"", "");
+            ExtractAPK(apkL);
+        }
+
+        public static void ExtractAPK(string location)
+        {
+            Logger.Log("Extracting " + PublicStaticVars.settings.packageId);
+            FileManager.DeleteDirectoryIfExisting(PublicStaticVars.extracedHorizonLocation);
+            ZipFile.ExtractToDirectory(location, PublicStaticVars.extracedHorizonLocation);
+        }
+
         public static void PullAndExtractAPK()
         {
-            string location = PublicStaticVars.interactor.adbS("shell pm path " + PublicStaticVars.settings.packageId).Replace("package:", "").Replace("\r\n", "");
             string horizonLocation = PublicStaticVars.settings.resultDirectory + "app.apk";
-            PublicStaticVars.interactor.Pull(location, horizonLocation);
-            Logger.Log("Extracting Horizon");
-            FileManager.DeleteDirectoryIfExisting(PublicStaticVars.extracedHorizonLocation);
-            ZipFile.ExtractToDirectory(horizonLocation, PublicStaticVars.extracedHorizonLocation);
+            ADBHelpers.PullAPKFromQuest(horizonLocation);
+            ExtractAPK(horizonLocation);
         }
 
         public async static void ExtractDex()

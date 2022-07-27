@@ -12,10 +12,11 @@ namespace QuestTools
 {
     public class Menu
     {
-        public static Updater updater = new Updater("0.0.1", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
+        public static Updater updater = new Updater("0.0.2", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
 
         public static void StartMenu()
         {
+            updater.UpdateAssistant();
             Settings.LoadSettings();
             Dependencies.DownloadAndValidateDependencies();
             while(true)
@@ -27,19 +28,27 @@ namespace QuestTools
                 Logger.Log("If this is the first time running the program make sure to set an output directory. Decompiling overwrites the previous results if the output directory isn't changed.", LoggingType.Important);
                 string choice = ConsoleUiController.ShowMenu(new string[]
                 {
-                    "Decompile selected apk to selected folder (" + PublicStaticVars.settings.packageId + "; change in settings)",
-                    "Decompile Unity APK",
+                    "Decompile java app to selected folder (" + PublicStaticVars.settings.packageId + " will be pulled from your quest; change in settings)",
+                    "Decompile java app to selected folder (select apk)",
+                    "Decompile Unity APK (" + PublicStaticVars.settings.packageId + " will be pulled from your quest; change in settings)",
+                    "Decompile Unity APK (select apk)",
                     "Set setting"
                 });
                 switch (choice)
                 {
                     case "1":
-                        HorizonDecompiler.DecompileAPK();
+                        HorizonDecompiler.DecompileAPK(true);
                         break;
                     case "2":
-                        UnityDecompiler.SelectAndDecompileUnityAPK();
+                        HorizonDecompiler.DecompileAPK(false);
                         break;
                     case "3":
+                        UnityDecompiler.SelectAndDecompileUnityAPK(true);
+                        break;
+                    case "4":
+                        UnityDecompiler.SelectAndDecompileUnityAPK(false);
+                        break;
+                    case "5":
                         Images.Settings();
                         Settings.OpenSettings();
                         break;

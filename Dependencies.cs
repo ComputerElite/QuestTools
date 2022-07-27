@@ -35,6 +35,7 @@ namespace QuestTools
             ZipFile.ExtractToDirectory("il2CppDumper.zip", PublicStaticVars.tmpFolder + "il2CppDumper" + Path.DirectorySeparatorChar);
             Directory.Move(il2CppDumper, PublicStaticVars.il2CppDumperLocation);
             File.WriteAllText(PublicStaticVars.il2CppDumperLocation + "version.txt", il2CppDumperVersion);
+            File.Delete("il2CppDumper.zip");
         }
 
         public static void ValidateDexTools()
@@ -46,6 +47,7 @@ namespace QuestTools
             ZipFile.ExtractToDirectory("dexTools.zip", PublicStaticVars.tmpFolder + "dexTools" + Path.DirectorySeparatorChar);
             Directory.Move(dexTools + "dex-tools-2.1", PublicStaticVars.dexToolsLocation);
             File.WriteAllText(PublicStaticVars.dexToolsLocation + "version.txt", dexToolsVersion);
+            File.Delete("dexTools.zip");
         }
 
         public static void ValidateJdCli()
@@ -55,6 +57,7 @@ namespace QuestTools
             DownloadFile(jdCliDownloadLink, "jdCli.zip");
             ZipFile.ExtractToDirectory("jdCli.zip", PublicStaticVars.jdCliLocation);
             File.WriteAllText(PublicStaticVars.jdCliLocation+ "version.txt", jdCliVersion);
+            File.Delete("jdCli.zip");
         }
 
         public static bool DownloadFile(string url, string destination)
