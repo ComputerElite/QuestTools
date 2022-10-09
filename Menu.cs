@@ -1,4 +1,5 @@
 ﻿using ComputerUtils.ConsoleUi;
+using ComputerUtils.FileManaging;
 using ComputerUtils.Logging;
 using ComputerUtils.Updating;
 using System;
@@ -12,7 +13,7 @@ namespace QuestTools
 {
     public class Menu
     {
-        public static Updater updater = new Updater("0.0.3", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
+        public static Updater updater = new Updater("0.0.4", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
 
         public static void StartMenu()
         {
@@ -26,6 +27,7 @@ namespace QuestTools
             Dependencies.DownloadAndValidateDependencies();
             while(true)
             {
+                FileManager.CreateDirectoryIfNotExisting(PublicStaticVars.tmpFolder);
                 Logger.Log("YOU PIECE OF SH*T. YOU ARE NOTHING. I'M THE GOD OF CRASHS AND THIS PROGRAM AIN'T GONNA CRASH. WHAT ARE YA GONNA DO BOUT IT? I'M GONNA KICK YOUR A**ES", LoggingType.Important);
                 Images.Evil();
                 Logger.Log("Created by ComputerElite");
