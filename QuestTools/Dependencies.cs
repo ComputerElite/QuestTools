@@ -18,12 +18,34 @@ namespace QuestTools
         public const string jdCliDownloadLink = "https://github.com/intoolswetrust/jd-cli/releases/download/jd-cli-1.2.0/jd-cli-1.2.0-dist.zip";
         public const string il2CppDumperVersion = "6.7.19";
         public const string il2CppDumperDownloadLink = "https://github.com/Perfare/Il2CppDumper/releases/download/v6.7.19/Il2CppDumper-net6-v6.7.19.zip";
+        
+        public const string apktoolVersion = "2.9.1";
+        public const string apktoolDownloadLink = "https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.9.1.jar";
+        
+        public const string signerVersion = "1.3.0";
+        public const string signerDownloadLink = "https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar";
         public static void DownloadAndValidateDependencies()
         {
             Logger.Log("Downloading and validating dependencies");
             ValidateDexTools();
             ValidateJdCli();
             ValidateIl2CppDumper();
+            ValidateApktool();
+            ValidateSigner();
+        }
+
+        public static void ValidateSigner()
+        {
+            if (GetContentOfFileIfExists(PublicStaticVars.signerLocation + "version.txt") == signerVersion) return;
+            DownloadFile(signerDownloadLink, PublicStaticVars.signerLocation);
+            File.WriteAllText(PublicStaticVars.signerLocation + "version.txt", signerVersion);
+        }
+
+        public static void ValidateApktool()
+        {
+            if (GetContentOfFileIfExists(PublicStaticVars.apktoolLocation + "version.txt") == apktoolVersion) return;
+            DownloadFile(apktoolDownloadLink, PublicStaticVars.apktoolLocation);
+            File.WriteAllText(PublicStaticVars.apktoolLocation + "version.txt", apktoolVersion);
         }
 
         public static void ValidateIl2CppDumper()

@@ -31,14 +31,28 @@ namespace QuestTools
 
         public static void ExtractAPK(string location)
         {
+            if (!File.Exists(location)) return;
             Logger.Log("Extracting " + PublicStaticVars.settings.packageId);
-            FileManager.DeleteDirectoryIfExisting(PublicStaticVars.extracedHorizonLocation);
-            ZipFile.ExtractToDirectory(location, PublicStaticVars.extracedHorizonLocation);
+            FileManager.RecreateDirectoryIfExisting(PublicStaticVars.extracedHorizonLocation);
+            ZipArchive a = ZipFile.OpenRead(location);
+            ZipArchiveEntry e;
+            int i = 1;
+            string file;
+            
+            while ((e = a.GetEntry(file = "classes" + (i != 1 ? i : "") + ".dex")) != null)
+            {
+                e.ExtractToFile(PublicStaticVars.extracedHorizonLocation + file);
+                i++;
+            }
+            a.Dispose();
+            //ZipFile.ExtractToDirectory(location, PublicStaticVars.extracedHorizonLocation);
         }
 
         public static void PullAndExtractAPK()
         {
+            FileManager.CreateDirectoryIfNotExisting(PublicStaticVars.settings._resultDirectory);
             string horizonLocation = PublicStaticVars.settings.resultDirectory + "app.apk";
+            Logger.Log(horizonLocation, LoggingType.Important);
             ADBHelpers.PullAPKFromQuest(horizonLocation);
             ExtractAPK(horizonLocation);
         }

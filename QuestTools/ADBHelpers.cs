@@ -14,5 +14,10 @@ namespace QuestTools
             string location = PublicStaticVars.interactor.adbS("shell pm path " + packageID).Replace("package:", "").Replace("\r\n", "");
             PublicStaticVars.interactor.Pull(location, target);
         }
+
+        public static List<string> GetPackages()
+        {
+            return PublicStaticVars.interactor.ListPackages();
+        }
     }
 }

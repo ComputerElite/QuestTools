@@ -13,7 +13,7 @@ namespace QuestTools
 {
     public class Menu
     {
-        public static Updater updater = new Updater("0.0.4", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
+        public static Updater updater = new Updater("0.0.5", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
 
         public static void StartMenu()
         {
@@ -39,7 +39,9 @@ namespace QuestTools
                     "Decompile java app to selected folder (select apk)",
                     "Decompile Unity APK (" + PublicStaticVars.settings.packageId + " will be pulled from your quest; change in settings)",
                     "Decompile Unity APK (select apk)",
-                    "Set setting"
+                    "Set setting",
+                    "Decompile all oculus apps to selected folder",
+                    "Spoof network security config and recompile apk (select apk)"
                 });
                 switch (choice)
                 {
@@ -58,6 +60,12 @@ namespace QuestTools
                     case "5":
                         Images.Settings();
                         Settings.OpenSettings();
+                        break;
+                    case "6":
+                        OculusDecompiler.DecompileAll();
+                        break;
+                    case "7":
+                        NetworkSecurityConfigSpoof.Spoof();
                         break;
                 }
             }

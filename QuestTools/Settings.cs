@@ -10,7 +10,16 @@ namespace QuestTools
 {
     public class Settings
     {
-        public string resultDirectory { get; set; } = "";
+        public string _resultDirectory { get; set; } = "";
+
+        public string resultDirectory
+        {
+            get
+            {
+                return _resultDirectory + packageId + Path.DirectorySeparatorChar;
+            }
+        }
+
         public string packageId { get; set; } = "com.oculus.horizon";
 
         public static void OpenSettings()
@@ -23,8 +32,8 @@ namespace QuestTools
             switch(c)
             {
                 case "1":
-                    PublicStaticVars.settings.resultDirectory = SetString();
-                    if (!PublicStaticVars.settings.resultDirectory.EndsWith(Path.DirectorySeparatorChar)) PublicStaticVars.settings.resultDirectory += Path.DirectorySeparatorChar;
+                    PublicStaticVars.settings._resultDirectory = SetString();
+                    if (!PublicStaticVars.settings._resultDirectory.EndsWith(Path.DirectorySeparatorChar)) PublicStaticVars.settings._resultDirectory += Path.DirectorySeparatorChar;
                     break;
                 case "2":
                     PublicStaticVars.settings.packageId = SetString();
