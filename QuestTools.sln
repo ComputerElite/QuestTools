@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestTools", "QuestTools\QuestTools.csproj", "{F8F4C96B-0E3E-45F9-BE9F-5B4164518C74}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComputerUtils", "..\ComputerUtils\ComputerUtils\ComputerUtils.csproj", "{4A7DDAAA-0A9A-4CF8-AF29-CFC186F356FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComputerUtils", "ComputerUtils\ComputerUtils\ComputerUtils.csproj", "{706CB62D-AB18-4ECE-BCF5-DDE12B80ACD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{F8F4C96B-0E3E-45F9-BE9F-5B4164518C74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8F4C96B-0E3E-45F9-BE9F-5B4164518C74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8F4C96B-0E3E-45F9-BE9F-5B4164518C74}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A7DDAAA-0A9A-4CF8-AF29-CFC186F356FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A7DDAAA-0A9A-4CF8-AF29-CFC186F356FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A7DDAAA-0A9A-4CF8-AF29-CFC186F356FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A7DDAAA-0A9A-4CF8-AF29-CFC186F356FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{706CB62D-AB18-4ECE-BCF5-DDE12B80ACD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{706CB62D-AB18-4ECE-BCF5-DDE12B80ACD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{706CB62D-AB18-4ECE-BCF5-DDE12B80ACD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{706CB62D-AB18-4ECE-BCF5-DDE12B80ACD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
