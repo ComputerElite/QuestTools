@@ -48,7 +48,7 @@ namespace QuestTools
             else
             {
                 if (GetContentOfFileIfExists(location + "version.txt") == version) return;
-                DownloadFile(downloadLink, PublicStaticVars.apktoolLocation);
+                DownloadFile(downloadLink, location);
                 File.WriteAllText(location + "version.txt", version);
             }
         }
