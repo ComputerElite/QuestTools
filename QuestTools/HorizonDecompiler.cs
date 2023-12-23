@@ -22,6 +22,17 @@ namespace QuestTools
             ExtractDex();
             Decompile();
         }
+        
+        public static void DecompileAPK(string apkLocation, string packageId = "")
+        {
+            if (packageId != "") PublicStaticVars.settings.packageId = packageId;
+            string orgResDir = PublicStaticVars.settings._resultDirectory;
+            PublicStaticVars.settings._resultDirectory = PublicStaticVars.settings._resultDirectory = Directory.GetParent(apkLocation).Parent.FullName + Path.DirectorySeparatorChar;
+            ExtractAPK(apkLocation);
+            ExtractDex();
+            Decompile();
+            PublicStaticVars.settings._resultDirectory = orgResDir;
+        }
 
         public static void CopyAndExtractAPK()
         {
@@ -46,6 +57,13 @@ namespace QuestTools
             }
             a.Dispose();
             //ZipFile.ExtractToDirectory(location, PublicStaticVars.extracedHorizonLocation);
+        }
+
+        public static void DepackApk(string location)
+        {
+            FileManager.RecreateDirectoryIfExisting(PublicStaticVars.extracedApkLocation);
+            // extract apk
+            Process.Start("java.exe", "-jar \"" + PublicStaticVars.apktoolLocation + "\" d \"" + location + "\" -f -o \"" + PublicStaticVars.extracedApkLocationWithoutSlash + "\"").WaitForExit();
         }
 
         public static void PullAndExtractAPK()

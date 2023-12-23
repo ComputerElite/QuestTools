@@ -22,6 +22,7 @@ namespace QuestTools
         public static string jdCliLocation { get { return AppDomain.CurrentDomain.BaseDirectory + "jdCli" + Path.DirectorySeparatorChar; } }
         public static string apktoolLocation { get { return AppDomain.CurrentDomain.BaseDirectory + "apktool.jar"; } }
         public static string signerLocation { get { return AppDomain.CurrentDomain.BaseDirectory + "uber-apk-signer.jar"; } }
+        public static string payloadDumperLocation { get { return AppDomain.CurrentDomain.BaseDirectory + "payloadDumper" + Path.DirectorySeparatorChar; } }
         public static string tmpFolder { get { return settings.resultDirectory + "tmp" + Path.DirectorySeparatorChar; } }
         public static CommandLineCommandContainer arguments = null;
     }
