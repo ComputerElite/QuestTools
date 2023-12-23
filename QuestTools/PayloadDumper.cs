@@ -44,6 +44,7 @@ class PayloadDumper
         List<string> allApkFiles = GetAllApkFilesRecursive(PublicStaticVars.settings._resultDirectory + "extracted" + Path.DirectorySeparatorChar + "system");
         PublicStaticVars.settings.packageId = "tmpGetPackageId";
         FileManager.CreateDirectoryIfNotExisting(PublicStaticVars.settings._resultDirectory + "apps");
+        int i = 0;
         foreach (string apk in allApkFiles)
         {
             Logger.Log("Processing " + apk);
@@ -52,8 +53,17 @@ class PayloadDumper
             File.Copy(apk, apkLoc);
             HorizonDecompiler.DepackApk(apkLoc);
             // Extract package id from android manifest
-            string manifest = File.ReadAllText(PublicStaticVars.extracedApkLocation + "AndroidManifest.xml");
-            string packageId = manifest.Split("package=\"")[1].Split("\"")[0];
+            string manifestLocation = PublicStaticVars.extracedApkLocation + "AndroidManifest.xml";
+            string packageId = "UnknownPackageName-" + i;
+            if (!File.Exists(manifestLocation))
+            {
+                i++;
+            }
+            else
+            {
+                string manifest = File.ReadAllText(manifestLocation);
+                packageId = manifest.Split("package=\"")[1].Split("\"")[0];
+            }
             Logger.Log("Apk is " + packageId);
             // Move apk
             string correctDir = PublicStaticVars.settings._resultDirectory + "apps" + Path.DirectorySeparatorChar +

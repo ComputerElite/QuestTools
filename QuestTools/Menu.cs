@@ -13,7 +13,7 @@ namespace QuestTools
 {
     public class Menu
     {
-        public static Updater updater = new Updater("0.0.8", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
+        public static Updater updater = new Updater("0.0.9", "https://github.com/ComputerElite/QuestTools", "QuestTools", Assembly.GetExecutingAssembly().Location);
 
         public static void StartMenu()
         {
