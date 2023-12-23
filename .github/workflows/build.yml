@@ -1,0 +1,37 @@
+name: .NET
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+    - run: cd QuestTools
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build
+    - name: Upload Debug net6.0.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: net6.0-Debug
+        path: QuestTools/bin/Debug/net6.0
+    - name: Upload Release net6.0.zip
+      uses: actions/upload-artifact@v3
+      with:
+        name: net6.0-Release
+        path: QuestTools/bin/Release/net6.0
