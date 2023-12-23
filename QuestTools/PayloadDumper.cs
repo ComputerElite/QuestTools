@@ -66,6 +66,14 @@ class PayloadDumper
             }
             Logger.Log("Apk is " + packageId);
             // Move apk
+            int ii = 0;
+            string tmpPackageId = packageId;
+            while (Directory.Exists(PublicStaticVars.settings._resultDirectory + "apps" + Path.DirectorySeparatorChar + tmpPackageId))
+            {
+                tmpPackageId = packageId + "-" + ii;
+                ii++;
+            }
+            packageId = tmpPackageId;
             string correctDir = PublicStaticVars.settings._resultDirectory + "apps" + Path.DirectorySeparatorChar +
                                 packageId;
             Directory.Move(PublicStaticVars.settings.resultDirectory, correctDir);
