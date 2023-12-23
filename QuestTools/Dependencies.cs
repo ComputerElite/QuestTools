@@ -76,20 +76,20 @@ namespace QuestTools
         {
             List<Dependency> dependencies = new List<Dependency>
             {
-                new Dependency("2.1", "https://github.com/pxb1988/dex2jar/releases/download/v2.1/dex2jar-2.1.zip",
-                    PublicStaticVars.dexToolsLocation, true),
-                new Dependency("1.6.6",
+                new Dependency("2.1.1", "https://github.com/pxb1988/dex2jar/releases/download/v2.1/dex2jar-2.1.zip",
+                    PublicStaticVars.dexToolsLocation, true, true),
+                new Dependency("1.6.6.1",
                     "https://github.com/intoolswetrust/jd-cli/releases/download/jd-cli-1.2.0/jd-cli-1.2.0-dist.zip",
                     PublicStaticVars.jdCliLocation, true),
-                new Dependency("6.7.19",
+                new Dependency("6.7.19.1",
                     "https://github.com/Perfare/Il2CppDumper/releases/download/v6.7.19/Il2CppDumper-net6-v6.7.19.zip",
                     PublicStaticVars.il2CppDumperLocation, true),
-                new Dependency("2.9.1", "https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.9.1.jar",
+                new Dependency("2.9.1.1", "https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.9.1.jar",
                     PublicStaticVars.apktoolLocation, false),
-                new Dependency("1.3.0",
+                new Dependency("1.3.0.1",
                     "https://github.com/patrickfav/uber-apk-signer/releases/download/v1.3.0/uber-apk-signer-1.3.0.jar",
                     PublicStaticVars.signerLocation, false),
-                new Dependency("1.0.0", "https://codeload.github.com/vm03/payload_dumper/zip/refs/heads/master", PublicStaticVars.payloadDumperLocation, true, true)
+                new Dependency("1.0.0.1", "https://codeload.github.com/vm03/payload_dumper/zip/refs/heads/master", PublicStaticVars.payloadDumperLocation, true, true)
             };
             Logger.Log("Downloading and validating dependencies");
             foreach (Dependency d in dependencies)
